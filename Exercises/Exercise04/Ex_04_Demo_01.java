@@ -17,8 +17,7 @@ class SaferRobotExample extends Robot
     }
 }
 
-public class Ex_04_Demo_01 extends Object
-{
+public class Ex_04_Demo_01 {
     public static void main(String[] args)
     {
         City bothell = new City();

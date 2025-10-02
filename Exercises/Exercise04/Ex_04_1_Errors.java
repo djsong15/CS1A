@@ -13,15 +13,14 @@ class SaferRobot extends Robot
 	 */
 	public void pickThingSafer()
 	{
-		if( this.canPickThing()
-		{
-		this.pickThing();
-		this.pickThing();
-		
+		if(this.canPickThing())
+        {
+            this.pickThing();
+        }
 	}
 }
 
-public class a extends Object
+public class Ex_04_1_Errors extends Object
 {
 public static void main(String[] args)
 {
@@ -36,20 +35,11 @@ public static void main(String[] args)
 	// 
 	// Let's start off with a couple of contrived examples, just to
 	// get a feel for how the "if" statement works:
-	if ( true )
-	{
-		new Thing(bothell, 2,1);
-	}
-	
-	if (1 < 50)
-	{
-		new Thing(bothell, 2,2);
-	}
-	
-	IF ( 500 > 70)
-	{
-		new Thing(bothell, 2,3);
-	}
+    new Thing(bothell, 2, 1);
+
+    new Thing(bothell, 2, 2);
+
+    new Thing(bothell, 2,3);
 	
 	new Wall(bothell,2,5, Direction.EAST);
 	new Wall(bothell,2,5, Direction.NORTH);
@@ -60,7 +50,7 @@ public static void main(String[] args)
 	// end.
 	
 	//Send robot to the store, and get thing
-	Ian.move();
+	ian.move();
 	ian.pickThingSafer();
 	ian.move();
 	ian.pickThingSafer();
@@ -75,10 +65,10 @@ public static void main(String[] args)
 	ian.putThing();
 	ian.putThing();
 	ian.putThing();
-	ian.putThing();
-	
+
 	//Turn robot around, and move one space west
 	ian.turnLeft();
+    ian.turnLeft();
 	ian.move();
 	
 	// the robot ends the program next to the 'house', with all the things
