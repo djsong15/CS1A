@@ -1,31 +1,34 @@
-import becker.robots.*;
-import java.util.Random;
+import becker.robots.City;
+import becker.robots.Direction;
+import becker.robots.Robot;
+import becker.robots.Thing;
+import becker.robots.Wall;
 
 class SaferRobot extends Robot
 {
-    SaferRobot(City c, int st, int ave, Direction dir, int num)
-    {
-        super(c, st, ave, dir, num);
-    }
+	SaferRobot(City c, int st, int ave, Direction dir, int num)
+	{
+		super(c, st, ave, dir, num);
+	}
 
-    /**
-	 * Picks up something, but only if there's something to pick up.
-	 */
+  /**
+	* Picks up something, but only if there's something to pick up.
+	*/
 	public void pickThingSafer()
 	{
 		if (this.canPickThing())
-        {
-            this.pickThing();
-        }
+		{
+			this.pickThing();
+		}
 	}
 
-    public void putThingSafer()
-    {
-        if (this.countThingsInBackpack() > 0)
-        {
-            this.putThing();
-        }
-    }
+	public void putThingSafer()
+	{
+		if (this.countThingsInBackpack() > 0)
+		{
+			this.putThing();
+		}
+	}
 }
 
 public class Ex_04_1_Errors extends Object
@@ -43,11 +46,11 @@ public static void main(String[] args)
 	// 
 	// Let's start off with a couple of contrived examples, just to
 	// get a feel for how the "if" statement works:
-    new Thing(bothell, 2, 1);
+	new Thing(bothell, 2, 1);
 
-    new Thing(bothell, 2, 2);
+	new Thing(bothell, 2, 2);
 
-    new Thing(bothell, 2,3);
+	new Thing(bothell, 2,3);
 	
 	new Wall(bothell,2,5, Direction.EAST);
 	new Wall(bothell,2,5, Direction.NORTH);
@@ -72,15 +75,15 @@ public static void main(String[] args)
 	// Drop all the things - at no point should the robot break!
 	ian.putThingSafer();
 	ian.putThingSafer();
-    ian.putThingSafer();
-    // 3 extra calls for testing
-    ian.putThingSafer();
-    ian.putThingSafer();
-    ian.putThingSafer();
+	ian.putThingSafer();
+	// 3 extra calls for testing
+	ian.putThingSafer();
+	ian.putThingSafer();
+	ian.putThingSafer();
 
 	//Turn robot around, and move one space west
 	ian.turnLeft();
-    ian.turnLeft();
+  ian.turnLeft();
 	ian.move();
 	
 	// the robot ends the program next to the 'house', with all the things
