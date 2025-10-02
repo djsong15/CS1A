@@ -1,0 +1,6 @@
+{
+  "java.project.referencedLibraries": [
+    "/Users/danielsong/Coding/CS1A/Robot/becker.jar"
+  ],
+  "java.compile.nullAnalysis.mode": "automatic"
+}

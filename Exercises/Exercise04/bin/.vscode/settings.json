@@ -1,0 +1,15 @@
+{
+  "java.project.referencedLibraries": {
+    "include": [
+      "lib/**/*.jar",
+      "/Users/danielsong/Coding/CS1A/Robot/becker.jar",
+      "becker.jar",
+      "**/*.jar"
+    ]
+  },
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.compile.nullAnalysis.mode": "disabled",
+  "java.saveActions.organizeImports": true,
+  "java.project.sourcePaths": ["."],
+  "java.project.outputPath": "bin"
+}
