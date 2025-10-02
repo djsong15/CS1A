@@ -11,7 +11,7 @@ class SaferRobot extends Robot
 		super(c, st, ave, dir, num);
 	}
 
-  /**
+    /**
 	* Picks up something, but only if there's something to pick up.
 	*/
 	public void pickThingSafer()
@@ -33,60 +33,60 @@ class SaferRobot extends Robot
 
 public class Ex_04_1_Errors extends Object
 {
-public static void main(String[] args)
-{
-	City bothell = new City();
-	SaferRobot ian = new SaferRobot(bothell, 2, 0, Direction.EAST, 0);
-	
-	// For this ICE, we know whether there's going to be a Thing
-	// at any given intersection or not.
-	// However, it's relatively easy to write code that will put a
-	// Thing at an intersection only some of the time, thus
-	// adding some uncertainty to the program.
-	// 
-	// Let's start off with a couple of contrived examples, just to
-	// get a feel for how the "if" statement works:
-	new Thing(bothell, 2, 1);
+    public static void main(String[] args)
+    {
+        City bothell = new City();
+        SaferRobot ian = new SaferRobot(bothell, 2, 0, Direction.EAST, 0);
 
-	new Thing(bothell, 2, 2);
+        // For this ICE, we know whether there's going to be a Thing
+        // at any given intersection or not.
+        // However, it's relatively easy to write code that will put a
+        // Thing at an intersection only some of the time, thus
+        // adding some uncertainty to the program.
+        //
+        // Let's start off with a couple of contrived examples, just to
+        // get a feel for how the "if" statement works:
+        new Thing(bothell, 2, 1);
 
-	new Thing(bothell, 2,3);
-	
-	new Wall(bothell,2,5, Direction.EAST);
-	new Wall(bothell,2,5, Direction.NORTH);
-	new Wall(bothell,2,5, Direction.SOUTH);
-	
-	// The robot should pick up all the Things that are in the city;
-	// the robot should then put everything down in the 'house' at the
-	// end.
-	
-	//Send robot to the store, and get thing
-	ian.move();
-	ian.pickThingSafer();
-	ian.move();
-	ian.pickThingSafer();
-	ian.move();
-	ian.pickThingSafer();
-	
-	// Move ian to housing
-	ian.move();
-	ian.move();
-	
-	// Drop all the things - at no point should the robot break!
-	ian.putThingSafer();
-	ian.putThingSafer();
-	ian.putThingSafer();
-	// 3 extra calls for testing
-	ian.putThingSafer();
-	ian.putThingSafer();
-	ian.putThingSafer();
+        new Thing(bothell, 2, 2);
 
-	//Turn robot around, and move one space west
-	ian.turnLeft();
-  ian.turnLeft();
-	ian.move();
-	
-	// the robot ends the program next to the 'house', with all the things
-	// inside the house.
+        new Thing(bothell, 2,3);
+
+        new Wall(bothell,2,5, Direction.EAST);
+        new Wall(bothell,2,5, Direction.NORTH);
+        new Wall(bothell,2,5, Direction.SOUTH);
+
+        // The robot should pick up all the Things that are in the city;
+        // the robot should then put everything down in the 'house' at the
+        // end.
+
+        //Send robot to the store, and get thing
+        ian.move();
+        ian.pickThingSafer();
+        ian.move();
+        ian.pickThingSafer();
+        ian.move();
+        ian.pickThingSafer();
+
+        // Move ian to housing
+        ian.move();
+        ian.move();
+
+        // Drop all the things - at no point should the robot break!
+        ian.putThingSafer();
+        ian.putThingSafer();
+        ian.putThingSafer();
+        // 3 extra calls for testing
+        ian.putThingSafer();
+        ian.putThingSafer();
+        ian.putThingSafer();
+
+        //Turn robot around, and move one space west
+        ian.turnLeft();
+        ian.turnLeft();
+        ian.move();
+
+        // the robot ends the program next to the 'house', with all the things
+        // inside the house.
 	}
 }
