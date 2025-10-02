@@ -13,11 +13,19 @@ class SaferRobot extends Robot
 	 */
 	public void pickThingSafer()
 	{
-		if(this.canPickThing())
+		if (this.canPickThing())
         {
             this.pickThing();
         }
 	}
+
+    public void putThingSafer()
+    {
+        if (this.countThingsInBackpack() > 0)
+        {
+            this.putThing();
+        }
+    }
 }
 
 public class Ex_04_1_Errors extends Object
@@ -62,9 +70,13 @@ public static void main(String[] args)
 	ian.move();
 	
 	// Drop all the things - at no point should the robot break!
-	ian.putThing();
-	ian.putThing();
-	ian.putThing();
+	ian.putThingSafer();
+	ian.putThingSafer();
+    ian.putThingSafer();
+    // 3 extra calls for testing
+    ian.putThingSafer();
+    ian.putThingSafer();
+    ian.putThingSafer();
 
 	//Turn robot around, and move one space west
 	ian.turnLeft();
