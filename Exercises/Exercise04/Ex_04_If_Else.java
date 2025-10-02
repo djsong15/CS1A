@@ -1,6 +1,6 @@
 
 //
-// YOUR JOB IS TO FILL IN THE chooseDirectoin COMMAND, SO THAT THE ROBOT
+// YOUR JOB IS TO FILL IN THE chooseDirection COMMAND, SO THAT THE ROBOT
 // MOVES FROM ONE END OF THE PIPE TO THE OTHER.
 //
 //
@@ -12,19 +12,15 @@ class RobotThatFollowsThePipe extends Robot {
 		super(c, st, ave, dir, num);
 	}
 
-	public void chooseDirection()
-	{
-		if( this.canPickThing()   )
-		{
-this.turnLeft();
-		}
-		else
-		{
-							this.move();
-//			if(  )
-			{
-			}
-			// need anything else?
+	public void chooseDirection() {
+		if(this.canPickThing()) {
+            this.turnLeft();
+		} else if (!this.frontIsClear()) {
+            this.turnRight();
+        } else {
+            for (int i = 0; i < 4; i++) {
+                this.move();
+            }
 		}
 	}
 
