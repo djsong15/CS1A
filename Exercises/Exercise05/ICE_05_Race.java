@@ -69,7 +69,7 @@ public class ICE_05_Race extends Object
            mary.move();
        }
        mary.turnRight();
-       // mary should run to Ave 5
+       // mary should run to St 5
        while (mary.getStreet() < 5) {
            mary.move();
        }
