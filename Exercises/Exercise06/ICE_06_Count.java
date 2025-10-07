@@ -25,10 +25,6 @@ public class ICE_06_Count extends Object {
         new Thing(wallville, 7, 6);
         new Thing(wallville, 1, 6);
 
-        // Instead of giving rob 6 separate "move" commands,
-        // simply tell it that you want it to move 6 times
-        int i = 1; 	// Notice that this "i" is COMPLETELY SEPARATE
-                    // from the "i" in moveSix, above
         rob.moveSix();
         rob.turnLeft();
         rob.moveSix();
