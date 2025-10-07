@@ -16,7 +16,7 @@ class RelayRacer extends Robot {
     public void batonPass(RelayRacer nextRacer) {
         if (this.getStreet() > nextRacer.getStreet()) {
             this.turnLeft();
-        } else {
+        } else if (this.getStreet() < nextRacer.getStreet()) {
             this.turnRight();
         }
         while (this.getStreet() != nextRacer.getStreet()) {
