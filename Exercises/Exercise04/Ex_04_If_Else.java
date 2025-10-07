@@ -13,7 +13,7 @@ class RobotThatFollowsThePipe extends Robot {
 	}
 
 	public void chooseDirection() {
-		if(this.canPickThing()) {
+		if (this.canPickThing()) {
             this.turnLeft();
 		} else if (!this.frontIsClear()) {
             this.turnRight();
