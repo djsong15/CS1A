@@ -11,11 +11,6 @@ class GpsBot extends Robot {
         this.turnLeft();
     }
 
-    public void turnRight() {
-        this.turnAround();
-        this.turnLeft();
-    }
-
     public void navigate() {
         if (this.frontIsClear()) {
             this.move();
