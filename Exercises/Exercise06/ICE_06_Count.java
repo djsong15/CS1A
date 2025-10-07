@@ -29,10 +29,7 @@ public class ICE_06_Count extends Object {
         // simply tell it that you want it to move 6 times
         int i = 1; 	// Notice that this "i" is COMPLETELY SEPARATE
                     // from the "i" in moveSix, above
-        while (i < 5) {
-            rob.move();
-			++i;
-        }
+        rob.moveSix();
         rob.turnLeft();
         rob.moveSix();
     }
