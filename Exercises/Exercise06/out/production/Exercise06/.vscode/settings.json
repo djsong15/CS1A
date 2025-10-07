@@ -1,0 +1,6 @@
+{
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "/Users/danielsong/Coding/CS1A/Robot/becker.jar"
+  ]
+}

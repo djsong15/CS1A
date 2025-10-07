@@ -1,18 +1,16 @@
 import becker.robots.*;
 
 class RobotSmarter extends Robot {
-	RobotSmarter2(City c, int st, int ave, Direction dir, int num)
-    {
+	RobotSmarter(City c, int st, int ave, Direction dir, int num) {
         super(c, st, ave, dir, num);
     }
 
-	public void moveSix
-
-	{
+	public void moveSix() {
 		int i = 1;
-		while (i <= 6)
-			this.move();
-		i = i + 1;
+		while (i <= 6) {
+            this.move();
+            ++i;
+        }
 	}
 }
 
@@ -31,12 +29,11 @@ public class ICE_06_Count extends Object {
         // simply tell it that you want it to move 6 times
         int i = 1; 	// Notice that this "i" is COMPLETELY SEPARATE
                     // from the "i" in moveSix, above
-        while  i < 5
-        {
+        while (i < 5) {
             rob.move();
-				i = i + 1;
-		  }
+			++i;
+        }
         rob.turnLeft();
-        rob.moveSix()
+        rob.moveSix();
     }
 }
