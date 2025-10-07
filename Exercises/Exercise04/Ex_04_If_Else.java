@@ -18,9 +18,7 @@ class RobotThatFollowsThePipe extends Robot {
 		} else if (!this.frontIsClear()) {
             this.turnRight();
         } else {
-            for (int i = 0; i < 4; i++) {
-                this.move();
-            }
+            this.move4();
 		}
 	}
 
@@ -30,6 +28,19 @@ class RobotThatFollowsThePipe extends Robot {
 		this.turnLeft();
 		this.turnLeft();
 	}
+
+    public void move4() {
+        int i = 0;
+        while (i < 4) {
+            this.move();
+            ++i;
+        }
+    }
+
+    public void travel() {
+        this.move4();
+        this.chooseDirection();
+    }
 }
 
 public class Ex_04_If_Else extends Object {
@@ -84,46 +95,8 @@ public class Ex_04_If_Else extends Object {
 		RobotThatFollowsThePipe Jo = new RobotThatFollowsThePipe(toronto, 4, 1, Direction.EAST, 0);
 		setupCity(toronto); // ignore this line for now
 
-		// heading east, along the bottom corridor on the left
-		Jo.move();
-		Jo.move();
-		Jo.move();
-		Jo.move();
-		Jo.chooseDirection();
-		// at this point, the robot should be facing north
-
-		// heading north
-		Jo.move();
-		Jo.move();
-		Jo.move();
-		Jo.move();
-		Jo.chooseDirection();
-		// at this point, the robot should be facing east
-
-		// heading east across the top
-		Jo.move();
-		Jo.move();
-		Jo.move();
-		Jo.move();
-		Jo.chooseDirection();
-		// at this point, the robot should be facing south
-
-		// heading south down the east side
-		Jo.move();
-		Jo.move();
-		Jo.move();
-		Jo.move();
-		Jo.chooseDirection();
-		// at this point, the robot should be facing east
-
-		// heading east, but only 4 steps
-		Jo.move();
-		Jo.move();
-		Jo.move();
-		Jo.move();
-		Jo.chooseDirection();
-		// this last, final time you'll need to move the robot 4 spaces ahead!
-
-		// Robot is at the end of the hallway, you're done!! :)
+        while (Jo.frontIsClear()) {
+            Jo.travel();
+        }
 	}
 }
