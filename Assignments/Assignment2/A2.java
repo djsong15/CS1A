@@ -1,3 +1,9 @@
+/*
+ * Daniel Song
+ * CS1A, Fall'24
+ * Assignment 2.0
+ */
+
 import becker.robots.*;
 import java.util.Random;
 
@@ -8,12 +14,21 @@ class BetterRobot extends Robot
         super(c, st, ave, dir, num);
     }
 
+    // make a 180° turn
     public void turnAround()
     {
         this.turnLeft();
         this.turnLeft();
     }
 
+    // make a 270° turn
+    public void turnRight()
+    {
+        this.turnAround();
+        this.turnLeft();
+    }
+
+    // move while front is clear
     public void moveToWall()
     {
         while (this.frontIsClear())
@@ -22,7 +37,69 @@ class BetterRobot extends Robot
         }
     }
 
+    /* get thing at end of hall
+    move to the end, grab thing, turn around, move back to start */
+    public void fetchThing()
+    {
+        this.moveToWall();
+        this.pickThing();
+        this.turnAround();
+        this.moveToWall();
+    }
 
+    // after exiting a hall, turn left, move down to the next hall, turn left again
+    public void uTurn()
+    {
+        this.turnLeft();
+        this.move();
+        this.turnLeft();
+    }
+
+    /* while we have things in backpack,
+    move once, drop thing */
+    public void dropOffThings()
+    {
+        while (this.countThingsInBackpack() > 0)
+        {
+            this.move();
+            this.putThing();
+        }
+    }
+
+    /* from end of last hall
+     * turn around and go back to start
+     * then turn right move all the way back up
+     * turn right, back to starting position
+     */
+    public void returnHome()
+    {
+        this.turnAround();
+        this.moveToWall();
+        this.turnRight();
+        this.moveToWall();
+        this.turnRight();
+    }
+
+    /*
+     * do everything in sequence
+     * grab things at end of each hall
+     * drop off all things at last hall
+     * return home
+     */
+    public void doEverything()
+    {
+        int counter = 0;
+        while (counter < 4)
+        {
+            this.fetchThing();
+            this.uTurn();
+            ++counter;
+        }
+
+        this.dropOffThings();
+
+        this.returnHome();
+    }
 }
 
 public class A2 extends Object
@@ -45,6 +122,7 @@ public class A2 extends Object
          * the maze.
          */
 
+        rob.doEverything();
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
