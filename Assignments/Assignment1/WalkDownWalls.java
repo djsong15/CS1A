@@ -2,22 +2,18 @@ import java.awt.Color;
 
 import becker.robots.*;
 
-class RobotThatCanWalkDownWalls extends Robot
-{
-    RobotThatCanWalkDownWalls(City c, int st, int ave, Direction dir, int num)
-    {
+class RobotThatCanWalkDownWalls extends Robot {
+    RobotThatCanWalkDownWalls(City c, int st, int ave, Direction dir, int num) {
         super(c, st, ave, dir, num);
     }
-    
-    public void turnRight()
-    {
+
+    public void turnRight() {
         this.turnLeft();
         this.turnLeft();
         this.turnLeft();
     }
 
-    public void walkDownWall()
-    {
+    public void walkDownWall() {
         this.move();
         this.turnRight();
         this.move();
@@ -27,10 +23,8 @@ class RobotThatCanWalkDownWalls extends Robot
     }
 }
 
-public class WalkDownWalls extends Object
-{
-    public static void main(String[] args)
-    {
+public class WalkDownWalls extends Object {
+    public static void main(String[] args) {
         City wallingford = new City();
         RobotThatCanWalkDownWalls jo = new RobotThatCanWalkDownWalls(wallingford, 0, 1, Direction.EAST, 0);
         jo.setColor(Color.getHSBColor(350f, .70f, 1f));
