@@ -7,40 +7,35 @@
 import becker.robots.*;
 import java.util.Random;
 
-class BetterRobot extends Robot
-{
-    public BetterRobot(City c, int st, int ave, Direction dir, int num)
-    {
+class BetterRobot extends Robot {
+    public BetterRobot(City c, int st, int ave, Direction dir, int num) {
         super(c, st, ave, dir, num);
     }
 
     // make a 180° turn
-    public void turnAround()
-    {
+    public void turnAround() {
         this.turnLeft();
         this.turnLeft();
     }
 
     // make a 270° turn
-    public void turnRight()
-    {
+    public void turnRight() {
         this.turnAround();
         this.turnLeft();
     }
 
     // move while front is clear
-    public void moveToWall()
-    {
-        while (this.frontIsClear())
-        {
+    public void moveToWall() {
+        while (this.frontIsClear()) {
             this.move();
         }
     }
 
-    /* get thing at end of hall
-    move to the end, grab thing, turn around, move back to start */
-    public void fetchThing()
-    {
+    /*
+     * get thing at end of hall
+     * move to the end, grab thing, turn around, move back to start
+     */
+    public void fetchThing() {
         this.moveToWall();
         this.pickThing();
         this.turnAround();
@@ -48,31 +43,30 @@ class BetterRobot extends Robot
     }
 
     // after exiting a hall, turn left, move down to the next hall, turn left again
-    public void uTurn()
-    {
+    public void uTurn() {
         this.turnLeft();
         this.move();
         this.turnLeft();
     }
 
-    /* while we have things in backpack,
-    move once, drop thing */
-    public void dropOffThings()
-    {
-        while (this.countThingsInBackpack() > 0)
-        {
+    /*
+     * while we have things in backpack,
+     * move once, drop thing
+     */
+    public void dropOffThings() {
+        while (this.countThingsInBackpack() > 0) {
             this.move();
             this.putThing();
         }
     }
 
-    /* from end of last hall
+    /*
+     * from end of last hall
      * turn around and go back to start
      * then turn right move all the way back up
      * turn right, back to starting position
      */
-    public void returnHome()
-    {
+    public void returnHome() {
         this.turnAround();
         this.moveToWall();
         this.turnRight();
@@ -86,26 +80,21 @@ class BetterRobot extends Robot
      * drop off all things at last hall
      * return home
      */
-    public void doEverything()
-    {
+    public void doEverything() {
         int counter = 0;
-        while (counter < 4)
-        {
+        while (counter < 4) {
             this.fetchThing();
             this.uTurn();
             ++counter;
         }
 
         this.dropOffThings();
-
         this.returnHome();
     }
 }
 
-public class A2 extends Object
-{
-    public static void main(String[] args)
-    {
+public class A2 extends Object {
+    public static void main(String[] args) {
         City wallville = new City(6, 12);
         BetterRobot rob = new BetterRobot(wallville, 1, 2, Direction.EAST, 0);
 
@@ -129,8 +118,7 @@ public class A2 extends Object
     // No need to touch any of the code below.
     // All it does is construct the maze in the city.
     /////////////////////////////////////////////////////////////////////////////////////////
-    public static void buildCity(City wallville)
-    {
+    public static void buildCity(City wallville) {
         // Width and height must be at least 2 (each)
         // Feel free to change these numbers, and see how your race track changes
 
@@ -141,21 +129,17 @@ public class A2 extends Object
         int width = 4 + randomNumberGenerator.nextInt(7);
 
         int streetNumber = top;
-        while (streetNumber <= height)
-        {
-            if (streetNumber == 1)
-            {
+        while (streetNumber <= height) {
+            if (streetNumber == 1) {
                 // the topmost line:
                 new Wall(wallville, streetNumber, left, Direction.NORTH);
-            } else if (streetNumber == height)
-            {
+            } else if (streetNumber == height) {
                 // generate the 'holding spot' thing at the bottom: the corner:
                 new Wall(wallville, streetNumber + 1, left, Direction.WEST);
                 new Wall(wallville, streetNumber + 1, left, Direction.SOUTH);
                 int spotNum = left + 1;
                 int counter = 0;
-                while (counter < height)
-                {
+                while (counter < height) {
                     new Wall(wallville, streetNumber + 1, spotNum, Direction.NORTH);
                     new Wall(wallville, streetNumber + 1, spotNum, Direction.SOUTH);
                     // Uncomment the next line for a 'final state' picture (i.e., the second picture
@@ -175,8 +159,7 @@ public class A2 extends Object
             new Thing(wallville, streetNumber, width);
 
             int aveNum = left + 1;
-            while (aveNum <= width)
-            {
+            while (aveNum <= width) {
                 new Wall(wallville, streetNumber, aveNum, Direction.NORTH);
                 new Wall(wallville, streetNumber, aveNum, Direction.SOUTH);
                 ++aveNum;

@@ -4,8 +4,11 @@
 // MOVES FROM ONE END OF THE PIPE TO THE OTHER.
 //
 //
-import becker.robots.*;
-import java.util.Random; // to use the "Random" class
+import becker.robots.City;
+import becker.robots.Direction;
+import becker.robots.Robot;
+import becker.robots.Thing;
+import becker.robots.Wall;
 
 class RobotThatFollowsThePipe extends Robot {
 	public RobotThatFollowsThePipe(City c, int st, int ave, Direction dir, int num) {
@@ -14,11 +17,11 @@ class RobotThatFollowsThePipe extends Robot {
 
 	public void chooseDirection() {
 		if (this.canPickThing()) {
-            this.turnLeft();
+			this.turnLeft();
 		} else if (!this.frontIsClear()) {
-            this.turnRight();
-        } else {
-            this.move4();
+			this.turnRight();
+		} else {
+			this.move4();
 		}
 	}
 
@@ -29,18 +32,18 @@ class RobotThatFollowsThePipe extends Robot {
 		this.turnLeft();
 	}
 
-    public void move4() {
-        int i = 0;
-        while (i < 4) {
-            this.move();
-            ++i;
-        }
-    }
+	public void move4() {
+		int i = 0;
+		while (i < 4) {
+			this.move();
+			++i;
+		}
+	}
 
-    public void travel() {
-        this.move4();
-        this.chooseDirection();
-    }
+	public void travel() {
+		this.move4();
+		this.chooseDirection();
+	}
 }
 
 public class Ex_04_If_Else extends Object {
@@ -95,8 +98,8 @@ public class Ex_04_If_Else extends Object {
 		RobotThatFollowsThePipe Jo = new RobotThatFollowsThePipe(toronto, 4, 1, Direction.EAST, 0);
 		setupCity(toronto); // ignore this line for now
 
-        while (Jo.frontIsClear()) {
-            Jo.travel();
-        }
+		while (Jo.frontIsClear()) {
+			Jo.travel();
+		}
 	}
 }

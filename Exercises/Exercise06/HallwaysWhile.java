@@ -39,28 +39,28 @@ class GpsBot extends Robot {
 
 public class HallwaysWhile extends Object {
     // These are a couple of new commands that belong to the program
-	// rather than any particular robot.
-	// For right now, don't worry about how these work :)
+    // rather than any particular robot.
+    // For right now, don't worry about how these work :)
     public static void hallwayN(City c, int st, int ave, int streetsNorth) {
         for (int i = 0; i < streetsNorth; i++) {
             new Wall(c, st - i, ave, Direction.WEST);
             new Wall(c, st - i, ave, Direction.EAST);
         }
     }
-    
+
     public static void setupCity(City c) {
         // North hallway:
         hallwayN(c, 5, 5, 5);
         new Wall(c, 1, 5, Direction.NORTH);
         new Thing(c, 1, 5);
-        
+
         // West hallway:
         hallwayN(c, 5, 4, 5);
         new Wall(c, 1, 4, Direction.NORTH);
         new Wall(c, 6, 4, Direction.WEST);
         new Wall(c, 6, 4, Direction.SOUTH);
         new Thing(c, 1, 4);
-        
+
         // southern hallway
         hallwayN(c, 9, 4, 2);
         new Wall(c, 7, 4, Direction.WEST);
@@ -68,7 +68,7 @@ public class HallwaysWhile extends Object {
         new Wall(c, 7, 5, Direction.SOUTH);
         new Wall(c, 9, 4, Direction.SOUTH);
         new Thing(c, 9, 4);
-        
+
         // eastern hallway
         new Wall(c, 6, 6, Direction.EAST);
         new Wall(c, 6, 6, Direction.NORTH);
@@ -98,5 +98,3 @@ public class HallwaysWhile extends Object {
         Jo.returnHome();
     }
 }
-
-
