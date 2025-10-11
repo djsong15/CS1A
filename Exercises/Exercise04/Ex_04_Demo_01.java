@@ -1,45 +1,42 @@
-import becker.robots.*;
 import java.util.Random;
 
-class SaferRobotExample extends Robot
-{
-    SaferRobotExample(City c, int st, int ave, Direction dir, int num)
-    {
+import becker.robots.City;
+import becker.robots.Direction;
+import becker.robots.Robot;
+import becker.robots.Thing;
+import becker.robots.Wall;
+
+class SaferRobotExample extends Robot {
+    SaferRobotExample(City c, int st, int ave, Direction dir, int num) {
         super(c, st, ave, dir, num);
     }
 
-    public void putThingSafer()
-    {
-        if (this.countThingsInBackpack() > 0)
-        {
+    public void putThingSafer() {
+        if (this.countThingsInBackpack() > 0) {
             this.putThing();
         }
     }
 }
 
 public class Ex_04_Demo_01 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         City bothell = new City();
         Random numberGenerator = new Random(); // don't worry about this line
         SaferRobotExample ian = new SaferRobotExample(bothell, 2, 0, Direction.EAST, 0);
 
         // IGNORE THE CODE THAT STARTS ON THE NEXT LINE
         // %50 chance we'll put something at (2,1)
-        if (numberGenerator.nextInt(100) < 50)
-        {
+        if (numberGenerator.nextInt(100) < 50) {
             new Thing(bothell, 2, 1);
         }
         // KEEP IGNORING THE CODE
         // %20 chance we'll put something at (2,2)
-        if (numberGenerator.nextInt(100) < 20)
-        {
+        if (numberGenerator.nextInt(100) < 20) {
             new Thing(bothell, 2, 2);
         }
         // KEEP IGNORING THE CODE!
         // %70 chance we'll put something at (2, 3)
-        if (numberGenerator.nextInt(100) < 70)
-        {
+        if (numberGenerator.nextInt(100) < 70) {
             new Thing(bothell, 2, 3);
         }
         // OK, YOU SHOULD BE ABLE TO UNDERSTAND THE CODE FROM HERE ON OUT
@@ -55,16 +52,13 @@ public class Ex_04_Demo_01 {
 
         // Send robot to the store, and get thing
         ian.move();
-        if (ian.canPickThing())
-        {
+        if (ian.canPickThing()) {
             ian.pickThing();
         }
         ian.move();
-        if (ian.canPickThing())
-        {
+        if (ian.canPickThing()) {
             ian.pickThing();
-        } else
-        {
+        } else {
             ian.turnLeft();
             ian.turnLeft();
             ian.turnLeft();
@@ -72,8 +66,7 @@ public class Ex_04_Demo_01 {
         }
 
         ian.move();
-        if (ian.canPickThing())
-        {
+        if (ian.canPickThing()) {
             ian.pickThing();
         }
 
@@ -81,25 +74,20 @@ public class Ex_04_Demo_01 {
         // We should leave this out, since we know it'll be true
         // It's included here just to demonstrate how to ask if there's NO wall in front
         // of the robot
-        if (ian.frontIsClear())
-        {
+        if (ian.frontIsClear()) {
             ian.move();
         }
-        if (ian.frontIsClear())
-        {
+        if (ian.frontIsClear()) {
             ian.move();
         }
 
         // Drop all the things
-        if (ian.countThingsInBackpack() > 0)
-        {
+        if (ian.countThingsInBackpack() > 0) {
             ian.putThing();
         }
-        if (ian.countThingsInBackpack() > 0)
-        {
+        if (ian.countThingsInBackpack() > 0) {
             ian.putThing();
-        } else
-        {
+        } else {
             ian.turnLeft();
             ian.turnLeft();
             ian.turnLeft();
@@ -111,8 +99,7 @@ public class Ex_04_Demo_01 {
         // We should leave this out, since we know it'll be true
         // It's included here just to demonstrate how to ask if there's
         // a wall in front of the robot
-        if (!ian.frontIsClear())
-        {
+        if (!ian.frontIsClear()) {
             ian.turnLeft();
             ian.turnLeft();
             ian.move();
