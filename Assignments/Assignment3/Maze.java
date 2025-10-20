@@ -2,14 +2,19 @@ import becker.robots.*;
 
 /**
  * CS1A - Assignment 3 - "The Maze" <br>
- * Quarter: Fall'2025 <br>
- * TODO: THE SUMMARY GOES HERE <br>
+ * Quarter: Fall'2025
+ * <p>
  * Our MazeBot has five methods, 2 of which are inherited and overwritten from RobotSE.
- * The overridden methods are move() and putThing(). <br>
- *
+ * The overridden methods are move() and putThing(). move() is modified to
+ * count total and directional moves before moving. putThing() is modified to check
+ * if MazeBot has a thing to put down and if the current intersection doesn't already
+ * have a thing.
+ * </p>
+ *<p>
  * The strategy for navigateMaze() is for us to check the MazeBot's right wall first.
  * If frontIsClear, we'll move. Otherwise, the robot will keep turning left until frontIsClear and then move.
- * 
+ * The MazeBot should eventually make it out of the maze and even get out of deadends on the way.
+ * </p>
  * @author Junjian Zhang
  * @author Daniel Song
  */
