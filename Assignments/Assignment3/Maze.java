@@ -56,7 +56,11 @@ class MazeBot extends RobotSE {
         super.move();
     }
 
-    // TODO: You must override the putThing method here.
+    /**
+     * TODO: You must override the putThing method here.
+     * Will check if MazeBot has Things to put AND if
+     * a Thing isn't already placed on current intersection
+     */
     @Override
     public void putThing() {
         if (this.countThingsInBackpack() > 0 && !this.canPickThing()) {
@@ -64,6 +68,7 @@ class MazeBot extends RobotSE {
         }
     }
 
+    // Print out all counter variables
     public void printEverything() {
         System.out.println("Total number of spaces moved: " + this.totalMoves);
         System.out.println("Total number of westward movements: " + this.movesWest);
@@ -215,8 +220,8 @@ public class Maze extends Object {
     // ###########################################################################################
     public static void main(String[] args) {
         City calgary = new City(12, 12);
-        MazeBot don = new MazeBot(calgary, 1, 1, Direction.EAST, 1000); // TODO: <-- YOU WILL NEED TO CHANGE THIS FROM
-                                                                        // ZERO
+        MazeBot don = new MazeBot(calgary, 1, 1, Direction.EAST, 10); // TODO: <-- YOU WILL NEED TO CHANGE THIS FROM
+                                                                      // ZERO
 
         Maze.makeMaze(calgary);
 
