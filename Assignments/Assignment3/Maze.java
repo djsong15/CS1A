@@ -83,6 +83,7 @@ class MazeBot extends RobotSE {
             }
             this.move();
         }
+        this.putThing();
 
         // TODO: After completing Maze, print total number of spaces moved and how
         // many times robot moved East, South, West, North.
