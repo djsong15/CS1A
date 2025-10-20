@@ -4,17 +4,24 @@ import becker.robots.*;
  * CS1A - Assignment 3 - "The Maze" <br>
  * Quarter: Fall'2025
  * <p>
- * Our MazeBot has five methods, 2 of which are inherited and overwritten from RobotSE.
+ * Our MazeBot has five methods, 2 of which are inherited and overwritten from
+ * RobotSE.
  * The overridden methods are move() and putThing(). move() is modified to
- * count total and directional moves before moving. putThing() is modified to check
- * if MazeBot has a thing to put down and if the current intersection doesn't already
+ * count total and directional moves before moving. putThing() is modified to
+ * check
+ * if MazeBot has a thing to put down and if the current intersection doesn't
+ * already
  * have a thing.
  * </p>
- *<p>
- * The strategy for navigateMaze() is for us to check the MazeBot's right wall first.
- * If frontIsClear, we'll move. Otherwise, the robot will keep turning left until frontIsClear and then move.
- * The MazeBot should eventually make it out of the maze and even get out of deadends on the way.
+ * <p>
+ * The strategy for navigateMaze() is for us to check the MazeBot's right wall
+ * first.
+ * If frontIsClear, we'll move. Otherwise, the robot will keep turning left
+ * until frontIsClear and then move.
+ * The MazeBot should eventually make it out of the maze and even get out of
+ * deadends on the way.
  * </p>
+ * 
  * @author Junjian Zhang
  * @author Daniel Song
  */
@@ -103,12 +110,9 @@ class MazeBot extends RobotSE {
 // The NavigateMaze() method is already set up and called by don the robot down
 // in main
 // ###################################################################################################
-public class Maze extends Object
-{
-    private static void makeMaze(City theCity)
-    {
-        for (int i = 1; i < 11; i++)
-        {
+public class Maze extends Object {
+    private static void makeMaze(City theCity) {
+        for (int i = 1; i < 11; i++) {
             // north wall
             new Wall(theCity, 1, i, Direction.NORTH);
 
@@ -152,36 +156,32 @@ public class Maze extends Object
         makeSpiral(theCity, 10, 5, 4);
     }
 
-    public static void makeSpiral(City theCity, int st, int ave, int size)
-    {
+    public static void makeSpiral(City theCity, int st, int ave, int size) {
         // We start out building the wall northward
         // the walls will be built on the east face of the current
         // intersection
         Direction facing = Direction.EAST;
 
-        while (size > 0)
-        {
+        while (size > 0) {
             int spacesLeft = size;
             int aveChange = 0;
             int stChange = 0;
-            switch (facing)
-            {
-            case EAST:
-                stChange = -1;
-                break;
-            case NORTH:
-                aveChange = -1;
-                break;
-            case WEST:
-                stChange = 1;
-                break;
-            case SOUTH:
-                aveChange = 1;
-                break;
+            switch (facing) {
+                case EAST:
+                    stChange = -1;
+                    break;
+                case NORTH:
+                    aveChange = -1;
+                    break;
+                case WEST:
+                    stChange = 1;
+                    break;
+                case SOUTH:
+                    aveChange = 1;
+                    break;
             }
 
-            while (spacesLeft > 0)
-            {
+            while (spacesLeft > 0) {
                 new Wall(theCity, st, ave, facing);
                 ave += aveChange;
                 st += stChange;
@@ -191,22 +191,21 @@ public class Maze extends Object
             ave -= aveChange;
             st -= stChange;
 
-            switch (facing)
-            {
-            case EAST:
-                facing = Direction.NORTH;
-                break;
-            case NORTH:
-                facing = Direction.WEST;
-                size--;
-                break;
-            case WEST:
-                facing = Direction.SOUTH;
-                break;
-            case SOUTH:
-                facing = Direction.EAST;
-                size--;
-                break;
+            switch (facing) {
+                case EAST:
+                    facing = Direction.NORTH;
+                    break;
+                case NORTH:
+                    facing = Direction.WEST;
+                    size--;
+                    break;
+                case WEST:
+                    facing = Direction.SOUTH;
+                    break;
+                case SOUTH:
+                    facing = Direction.EAST;
+                    size--;
+                    break;
             }
         }
     }
@@ -214,10 +213,10 @@ public class Maze extends Object
     // ###########################################################################################
     // Main Method
     // ###########################################################################################
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         City calgary = new City(12, 12);
-        MazeBot don = new MazeBot(calgary, 1, 1, Direction.EAST, 1000); // TODO: <-- YOU WILL NEED TO CHANGE THIS FROM ZERO
+        MazeBot don = new MazeBot(calgary, 1, 1, Direction.EAST, 1000); // TODO: <-- YOU WILL NEED TO CHANGE THIS FROM
+                                                                        // ZERO
 
         Maze.makeMaze(calgary);
 
