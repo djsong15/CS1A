@@ -37,7 +37,7 @@ public class Rep_I_O extends Object {
                 case (2) -> jo.move();
                 case (3) -> jo.pickThing();
                 case (4) -> jo.putThing();
-                case(5) -> System.out.println("Goodbye");
+                case (5) -> System.out.println("Goodbye");
             }
         }
 
