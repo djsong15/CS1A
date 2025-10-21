@@ -14,8 +14,7 @@ class RobotSmarter extends Robot {
 		}
 	}
 
-	public void moveMultiple(int numberOfIntersections) // parameter
-	{
+	public void moveMultiple(int numberOfIntersections) { // parameter
 		int counter = 0; // local variable
 		while (counter < numberOfIntersections) {
 			this.move();
@@ -27,6 +26,14 @@ class RobotSmarter extends Robot {
 		numberOfIntersections = 100000;
 		System.out.println("AFTER numberOfIntersections is : " + numberOfIntersections);
 	}
+
+	public void turnLeft(int numTurns) {
+		int counter = 0;
+		while (counter < numTurns) {
+			turnLeft();
+			counter++;
+		}
+	}
 }
 
 public class ICE_11_Demo_1 extends Object {
@@ -34,17 +41,15 @@ public class ICE_11_Demo_1 extends Object {
 		City wallville = new City(-3, 0, 12, 12);
 		RobotSmarter rob = new RobotSmarter(wallville, -2, 0, Direction.SOUTH, 0);
 		System.out.println(rob.getIntersection());
-		
+
 		rob.moveThree();
 		System.out.println(rob.getIntersection());
 		rob.turnLeft();
-		
+
 		// 3 is a "literal" number
 		rob.moveMultiple(3); // 3 is an "argument"
 		System.out.println(rob.getIntersection());
-		rob.turnLeft();
-		rob.turnLeft();
-		rob.turnLeft();
+		rob.turnLeft(3);
 
 		// Notice how we can use a variable to
 		// store the value (3) that we want to use as
