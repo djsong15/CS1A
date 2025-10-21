@@ -1,0 +1,28 @@
+THE PROGRAM STARTS HERE!!
+mary.getAvenue():1
+How many intersections forward would you like the robot to go?
+2
+You asked to move 2 spaces
+mary.getAvenue():2
+counter has been updated to:1
+mary.getAvenue():3
+counter has been updated to:2
+counter is finally:2
+THE PROGRAM ENDS HERE!!
+
+THE PROGRAM STARTS HERE!!
+mary.getAvenue():1
+How many intersections forward would you like the robot to go?
+-1
+You asked to move -1 spaces
+counter is finally:0
+THE PROGRAM ENDS HERE!!
+
+THE PROGRAM STARTS HERE!!
+mary.getAvenue():1
+How many intersections forward would you like the robot to go?
+Daniel
+You did NOT type in a whole number!
+You asked to move 0 spaces
+counter is finally:0
+THE PROGRAM ENDS HERE!!
