@@ -130,6 +130,7 @@ public class Exercise_13_Harvester extends Robot {
 
     @Override
     public void pickThing() {
+        // pickThing has to pick up all things at an intersection
         while (this.canPickThing()) {
             super.pickThing();
         }
