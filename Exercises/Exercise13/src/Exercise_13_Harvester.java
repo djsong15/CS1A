@@ -13,8 +13,7 @@ import becker.robots.Robot;
  * @author Baba Kofi Weusijana
  * @author Byron Weber Becker
  */
-public class Exercise_13_Harvester extends Robot
-{
+public class Exercise_13_Harvester extends Robot {
     /**
      * Construct a new Harvester robot.
      * 
@@ -25,8 +24,7 @@ public class Exercise_13_Harvester extends Robot
      *                  SOUTH, EAST, WEST}.
      * @param numThings the number of things to place in the robot's backpack.
      */
-    public Exercise_13_Harvester(City theCity, int str, int ave, Direction dir, int numThings)
-    {
+    public Exercise_13_Harvester(City theCity, int str, int ave, Direction dir, int numThings) {
         super(theCity, str, ave, dir, numThings);
     }
 
@@ -37,8 +35,7 @@ public class Exercise_13_Harvester extends Robot
      * method from the becker.robots.Robot class since that turnRight method is
      * private to any code that is not in the becker.robots package.
      */
-    public synchronized void turnRight()
-    {
+    public synchronized void turnRight() {
         // Note: We are inside this method calling super.turnLeft() (in
         // becker.robots.Robot) because we don't want to call this.turnLeft() (in this
         // Exercise_13_Harvester class) that will spin around way too much!
@@ -52,8 +49,7 @@ public class Exercise_13_Harvester extends Robot
      * Turns left after spinning around first.
      */
     @Override
-    public synchronized void turnLeft()
-    {
+    public synchronized void turnLeft() {
         // The first 4 times 'spins' the robot around
         super.turnLeft();
         super.turnLeft();
@@ -67,8 +63,7 @@ public class Exercise_13_Harvester extends Robot
      * Harvest a field of things. The robot is assumed to be on the north-west
      * corner of the field.
      */
-    public void harvestField()
-    {
+    public void harvestField() {
         System.out.println("Harvesting!");
         this.harvestTwoRows();
         this.positionForNextHarvest();
@@ -81,16 +76,14 @@ public class Exercise_13_Harvester extends Robot
      * Harvest two rows of the field, returning to the same avenue but one street
      * farther south.
      */
-    protected void harvestTwoRows()
-    {
+    protected void harvestTwoRows() {
         this.harvestOneRow();
         this.goToNextRow();
         this.harvestOneRow();
     }
 
     /** Harvest one row of five things. */
-    protected void harvestOneRow()
-    {
+    protected void harvestOneRow() {
         this.harvestIntersection();
         this.move();
         this.harvestIntersection();
@@ -103,8 +96,7 @@ public class Exercise_13_Harvester extends Robot
     }
 
     /** Go one row south and face west. The robot must be facing east. */
-    private void goToNextRow()
-    {
+    private void goToNextRow() {
         this.turnRight();
         this.move();
         this.turnRight();
@@ -114,16 +106,14 @@ public class Exercise_13_Harvester extends Robot
      * Position the robot for the next harvest by moving one street south and facing
      * west.
      */
-    private void positionForNextHarvest()
-    {
+    private void positionForNextHarvest() {
         this.turnLeft();
         this.move();
         this.turnLeft();
     }
 
     /** Harvest ALL of the things on one intersection. */
-    protected void harvestIntersection()
-    {
+    protected void harvestIntersection() {
         this.pickThing();
         System.out.print("I'm done picking up all the things at this intersection: ");
         System.out.println("(" + this.getStreet() + ", " + this.getAvenue() + ")");
@@ -151,6 +141,5 @@ public class Exercise_13_Harvester extends Robot
             super.putThing();
         }
     }
-
 
 }
