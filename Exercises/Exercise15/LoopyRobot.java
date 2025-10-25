@@ -1,3 +1,4 @@
+
 /* TODO: Fix the all the sections marked with "TODO:" comments (compile-time/syntax and logic errors). 
  * Make sure you follow ALL the instructions in the comments!
  * LoopyRobot distributes the Things in its backpack across 3 streets.
@@ -44,15 +45,16 @@ public class LoopyRobot extends Robot {
 			// TODO: Make sure you leave at least (NUM_THINGS_TO_PUT_ON_STREET1 + 1)
 			// things in the backpack for the other 2 streets by adding code here
 			// inside the while-loop (HINT:use the 'return' keyword):
-            if (this.countThingsInBackpack() <= NUM_THINGS_TO_PUT_ON_STREET1 + 1) {
-                return counter;
-            }
+			if (this.countThingsInBackpack() <= NUM_THINGS_TO_PUT_ON_STREET1 + 1) {
+				return counter;
+			}
 		}
 		return counter;
 	}
 
 	/*
-	 * This method moves the LoopyRobot south to the next street. Whichever direction
+	 * This method moves the LoopyRobot south to the next street. Whichever
+	 * direction
 	 * the robot was facing (east to west) it will be facing the opposite direction
 	 * when it gets to the next street.
 	 */
@@ -70,15 +72,16 @@ public class LoopyRobot extends Robot {
 	}
 
 	/*
-	 * This method is used to put a certain number of things (using parameter numThingsToPut)
+	 * This method is used to put a certain number of things (using parameter
+	 * numThingsToPut)
 	 * down on street 1.
 	 */
 	public void putThings(int numThingsToPut) {
 		// TODO: Since we know exactly how many Things to put down
 		// it is best to use a for-loop here.
-        for (int i = 0; i < numThingsToPut; i++) {
-            this.putThing();
-        }
+		for (int i = 0; i < numThingsToPut; i++) {
+			this.putThing();
+		}
 		// No need to return how many things this LoopyRobot put down
 		// because we knew that number in advance
 	}
@@ -91,8 +94,8 @@ public class LoopyRobot extends Robot {
 		// TODO: Since we know we will put down at least 1 Thing use a do-while
 		// loop here:
 		do {
-            this.putThing();
-            counter++;
+			this.putThing();
+			counter++;
 		} while (this.countThingsInBackpack() > 0);
 		// Since we are not sure (in advance) about how many things will be put
 		// down, we return the number that was actually put down.
@@ -101,13 +104,14 @@ public class LoopyRobot extends Robot {
 
 	/*
 	 * This method distributes things in the robot's backpack across 3 streets.
-	 * It also calls printScrollStatus() so users are warned if the robot is 
+	 * It also calls printScrollStatus() so users are warned if the robot is
 	 * not visible on the default city screen.
 	 */
 	public void distributeThings() {
 		// Put a random number of things down on street 0
 		int thingsPutStreet0 = putRandomNumThings();
-		// NOTE the use of an "else-if" to handle printing out what happened while correctly 
+		// NOTE the use of an "else-if" to handle printing out what happened while
+		// correctly
 		// handling plurality language.
 		if (thingsPutStreet0 > 1) {
 			System.out.println("The LoopyRobot just put down " + thingsPutStreet0 + " Things.");
@@ -120,7 +124,8 @@ public class LoopyRobot extends Robot {
 		printScrollStatus();
 		gotoNextStreet();
 
-		// Put a preset number of things (from the constant NUM_THINGS_TO_PUT_ON_STREET1) 
+		// Put a preset number of things (from the constant
+		// NUM_THINGS_TO_PUT_ON_STREET1)
 		// on street 1
 		putThings(NUM_THINGS_TO_PUT_ON_STREET1);
 		System.out.println("The LoopyRobot loopy just put down " + NUM_THINGS_TO_PUT_ON_STREET1 + " Things.");
@@ -128,7 +133,7 @@ public class LoopyRobot extends Robot {
 		printScrollStatus();
 		gotoNextStreet();
 
-		// Put the remaining things down on street 2. At this stage. there must be 
+		// Put the remaining things down on street 2. At this stage. there must be
 		// at least 1 thing left in the robot's backpack for this to work properly!
 		int thingsPutStreet2 = putAtLeast1Thing();
 		if (thingsPutStreet2 > 1) {
