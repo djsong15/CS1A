@@ -15,10 +15,9 @@ public class Game_Program extends Object
                                                               // helps...
 
         boolean playing = true;
-        while (playing)
-        {
+        while (playing) {
             guessingGameObject.playGuessingGame();
-
+            playing = false;
             /*
              * Do whatever else you need to in order to: Step 1:figure out if the game
              * should be played again or that the entire program should quit and Step 2: set
