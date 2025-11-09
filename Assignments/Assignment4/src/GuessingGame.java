@@ -15,8 +15,7 @@ import java.util.Scanner;
  * @author Daniel Song
  * @author Trevon Watson
  */
-public class GuessingGame extends Object
-{
+public class GuessingGame extends Object {
     // List any instance variables, including constants, here.
     private static final int MAX_POSSIBLE_GUESS = 64; // This is a constant
     private static final int MIN_POSSIBLE_GUESS = -64;
@@ -62,35 +61,35 @@ public class GuessingGame extends Object
     public boolean isGuessNum(int secretNumber) {
         int userGuess = this.getInput(MIN_POSSIBLE_GUESS, MAX_POSSIBLE_GUESS);
 
-        if (userGuess == secretNumber) {
+        if (this.isCorrectGuess(userGuess, secretNumber)) {
             return true;
         } else {
-            for (int i = 0; i < MAX_GUESSES - guessesLeft; i++) {
-                if (inputGuess[i] == userGuess) {
-                    System.out.println("You have already guessed " + userGuess + ". Try again.");
-                    return false;
-                }
-            }
-            if (userGuess < secretNumber) {
-                System.out.println("Hint: The correct number is LARGER than " + userGuess);
+            if (this.hasBeenGuessed(userGuess)) {
+                System.out.println("You have already guessed " + userGuess + ". Try again.");
             } else {
-                System.out.println("Hint: The correct number is SMALLER than " + userGuess);
+                this.saveGuess(userGuess);
+                System.out.println(this.getHint(userGuess, secretNumber));
+                this.printPreviousGuesses();
             }
-            this.saveGuess(userGuess);
-            System.out.print("Previous guess(es): ");
-            for (int i = 0; i < MAX_GUESSES - guessesLeft; i++) {
-                System.out.print(" " + inputGuess[i]);
-            }
-            System.out.println(".");
-            System.out.println("Guesses left: " + guessesLeft);
-            if (guessesLeft == 0) {
-                System.out.println("You've used all your guesses. The secret number was: " + secretNumber);
+            if (this.isGuessInRange(userGuess)) {
+                System.out.println(userGuess + " is NOT a number in the valid range. Please enter a whole number between " + MIN_POSSIBLE_GUESS + " and " + MAX_POSSIBLE_GUESS + ":");
             }
             return false;
         }
     }
 
     // You may want to create a method to print the user's previous guesses
+    public void printPreviousGuesses() {
+        System.out.print("Previous guess(es):");
+        for (int i = 0; i < MAX_GUESSES - guessesLeft; i++) {
+            System.out.print(" " + inputGuess[i]);
+            if (i < MAX_GUESSES - guessesLeft - 1) {
+                System.out.print(",");
+            }
+        }
+        System.out.println(".");
+        System.out.println("You have " + guessesLeft + " guess(es) left.");
+    }
 
     // You may want to create a method to store the user's guesses in the 8 elements
     // of the array
@@ -136,22 +135,48 @@ public class GuessingGame extends Object
     // You may want to create a boolean method to check that the user's guess is
     // within range (between a minimum and maximum)
     // and will return true if it is
+    private boolean isGuessInRange(int guess) {
+        return (guess >= MIN_POSSIBLE_GUESS && guess <= MAX_POSSIBLE_GUESS);
+    }
 
     // You may want to create a boolean method to see if the number has been guessed
     // previously and will return true if it has
+    private boolean hasBeenGuessed(int guess) {
+        for (int i = 0; i < MAX_GUESSES - guessesLeft; i++) {
+            if (inputGuess[i] == guess) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // You may want to create a boolean method to see if the number matches the
     // secret number and will return true if it does or false if it doesn't
+    private boolean isCorrectGuess(int guess, int secretNumber) {
+        return (guess == secretNumber);
+    }
 
     // You may want to create a method to give a hint about the number guessed
     // (e.g., "My secret number is GREATER than " or "My secret number is LESS than
     // ")
+    private String getHint(int guess, int secretNumber) {
+        if (guess < secretNumber) {
+            return "My secret number is GREATER than " + guess + ".";
+        } else {
+            return "My secret number is LESS than " + guess + ".";
+        }
+    }
 
     // You may want to create a method (e.g., playGame) that will check if the user
     // wants to play again, by calling the method for getting integer input from the
     // user,
     // (1 for 'yes', 0 for 'no') and incorporate the proper functionality depending
     // on the user's choice ( 1 or 0).
+    private int playGame() {
+        System.out.println("Do you want to play again? Enter 1 for 'yes' or 0 for 'no':");
+        int choice = this.getInput(0, 1);
+        return choice;
+    }
 
     public void playGuessingGame()
     {
