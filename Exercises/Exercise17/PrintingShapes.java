@@ -58,12 +58,42 @@ public class PrintingShapes extends Object {
 	public static void main(String[] args) {
 		// TODO: You will also add more code to this main method
 		PrintHelper printer = new PrintHelper();
+        Scanner keyboard = new Scanner(System.in);
 
-		printer.printStars(7);
-		printer.printRectangle(5, 3);
-        printer.printRectangleHollow(3, 5);
-        printer.printRectangleHollow(4, 5);
-        printer.printRectangleHollow(2, 2);
-        printer.printLeftTriangle(5);
+        System.out.println("Hello! How many stars would you like me to print?");
+        if (keyboard.hasNextInt()) {
+            printer.printStars(keyboard.nextInt());
+        } else return;
+
+        System.out.println("For a rectangle, how wide should it be?");
+        int width;
+        int height;
+        if (keyboard.hasNextInt()) {
+            width = keyboard.nextInt();
+        } else return;
+
+        System.out.println("How high should it be?");
+        if (keyboard.hasNextInt()) {
+            height = keyboard.nextInt();
+        } else return;
+        printer.printRectangle(width, height);
+        width = 0;
+        height = 0;
+
+        System.out.println("For a hollow rectangle, how wide should it be?");
+        if (keyboard.hasNextInt()) {
+            width = keyboard.nextInt();
+        } else return;
+        System.out.println("How high should it be?");
+        if (keyboard.hasNextInt()) {
+            height = keyboard.nextInt();
+        } else return;
+        printer.printRectangleHollow(width, height);
+
+        System.out.println("For a left triangle, how high should it be?");
+        if (keyboard.hasNextInt()) {
+            printer.printLeftTriangle(keyboard.nextInt());
+        } else return;
+
 	}
 }
