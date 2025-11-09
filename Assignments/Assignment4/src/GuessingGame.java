@@ -71,7 +71,7 @@ public class GuessingGame extends Object {
                 System.out.println(this.getHint(userGuess, secretNumber));
                 this.printPreviousGuesses();
             }
-            if (this.isGuessInRange(userGuess)) {
+            if (!this.isGuessInRange(userGuess)) {
                 System.out.println(userGuess + " is NOT a number in the valid range. Please enter a whole number between " + MIN_POSSIBLE_GUESS + " and " + MAX_POSSIBLE_GUESS + ":");
             }
             return false;
@@ -175,6 +175,13 @@ public class GuessingGame extends Object {
     private int playGame() {
         System.out.println("Do you want to play again? Enter 1 for 'yes' or 0 for 'no':");
         int choice = this.getInput(0, 1);
+        if (choice == 1) {
+            // Reset guessesLeft and inputGuess array for a new game
+            guessesLeft = MAX_GUESSES;
+            inputGuess = new int[MAX_GUESSES];
+        } else {
+            System.out.println("Exiting game...");
+        }
         return choice;
     }
 
@@ -191,8 +198,8 @@ public class GuessingGame extends Object {
             System.out.println("Enter a whole number between " + MIN_POSSIBLE_GUESS + " and " + MAX_POSSIBLE_GUESS + ":");
             if (this.isGuessNum(secretNumber)) {
                 System.out.println("You won!");
+                return this.playGame();
             }
-            // System.out.println("You have " + guessesLeft + " guesses left.");
         }
 
         // You might call and capture results from method (e.g., playGame) to see if
