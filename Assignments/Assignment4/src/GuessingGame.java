@@ -178,7 +178,7 @@ public class GuessingGame extends Object {
         return choice;
     }
 
-    public void playGuessingGame()
+    public int playGuessingGame()
     {
         int secretNumber = this.getRandomNumber(); // Feel free to move this into another method
 
@@ -191,7 +191,6 @@ public class GuessingGame extends Object {
             System.out.println("Enter a whole number between " + MIN_POSSIBLE_GUESS + " and " + MAX_POSSIBLE_GUESS + ":");
             if (this.isGuessNum(secretNumber)) {
                 System.out.println("You won!");
-                return;
             }
             // System.out.println("You have " + guessesLeft + " guesses left.");
         }
@@ -199,8 +198,9 @@ public class GuessingGame extends Object {
         // You might call and capture results from method (e.g., playGame) to see if
         // user wants to play again and if
         // so return it. Example: int playAgain = this.playGame();
+        int playAgain = this.playGame();
 
-        return; // if you want to end the game early & go directly back to main,
+        return playAgain; // if you want to end the game early & go directly back to main,
                 // you can use a "return;" statement like this one (e.g., return playAgain;)
     }
 

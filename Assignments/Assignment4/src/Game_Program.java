@@ -14,10 +14,9 @@ public class Game_Program extends Object
         GuessingGame guessingGameObject = new GuessingGame(); // feel free to add arguments to the constructor, if it
                                                               // helps...
 
-        boolean playing = true;
-        while (playing) {
-            guessingGameObject.playGuessingGame();
-            playing = false;
+        int playing = 1;
+        while (playing == 1) {
+            playing = guessingGameObject.playGuessingGame();
             /*
              * Do whatever else you need to in order to: Step 1:figure out if the game
              * should be played again or that the entire program should quit and Step 2: set
