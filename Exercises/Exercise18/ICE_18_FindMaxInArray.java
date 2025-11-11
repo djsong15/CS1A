@@ -1,6 +1,7 @@
-import java.util.Scanner;
+import java.util.*;
 
-class ArrayHelper2 extends Object {
+class ArrayHelper extends Object {
+
     // Copy this from the previous in class exercise
     public void PrintArray(int[] arrArg) {
         for (int i : arrArg) {
@@ -9,19 +10,24 @@ class ArrayHelper2 extends Object {
     }
 
     // This is the code you need to fill in
-    public void FindInArray(int[] arr, int target) {
+    public void FindMaxInArray(int[] arr) {
+        int max = arr[0];
+        int locationOfMax = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == target) {
-                System.out.println("Found " + target + " at index " + i);
-                return;
+            if (arr[i] > max) {
+                max = arr[i];
+                locationOfMax = i;
             }
         }
+
+        System.out.println("The largest value in the array is: " + max);
+        System.out.println("The location of the largest value in the array is: " + locationOfMax);
     }
 }
 
-public class ICE_18_FindInArray extends Object {
+public class ICE_18_FindMaxInArray extends Object {
     public static void main(String[] args) {
-        ArrayHelper2 ah = new ArrayHelper2();
+        ArrayHelper ah = new ArrayHelper();
 
         // Now set up the array stuff, which is more interesting:
         int[] shortArray = new int[4];
@@ -39,13 +45,11 @@ public class ICE_18_FindInArray extends Object {
             longArray[i] = (counter + 1) * 3;
             counter++;
         }
-
         System.out.println("Short Array: ");
-        ah.PrintArray(shortArray); // FIX THIS
+        ah.PrintArray(shortArray);
         System.out.println("Long Array:  ");
-        ah.PrintArray(longArray); // FIX THIS
-
-        ah.FindInArray(shortArray, 2); // SHOULD TELL US THAT '2' WAS FOUND AT SLOT 0
-        ah.FindInArray(longArray, 10); // SHOULD NOT PRINT ANYTHING
+        ah.PrintArray(longArray);
+        ah.FindMaxInArray(shortArray);
+        ah.FindMaxInArray(longArray);
     }
 }
