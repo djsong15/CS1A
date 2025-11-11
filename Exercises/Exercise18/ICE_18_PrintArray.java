@@ -1,4 +1,4 @@
-class ArrayHelper extends Object {
+class ArrayHelper1 extends Object {
     public void PrintArray(int[] arrArg) {
         // Your code goes here - use
         // the "process all elements" pattern, where the work
@@ -10,7 +10,7 @@ class ArrayHelper extends Object {
         /*
          * using enhanced for loop above, traditional for loop below
          * for (int i = 0; i < arrArg.length; i++) {
-         * System.out.println(arrArg[i]);
+         *   System.out.println(arrArg[i]);
          * }
          */
     }
@@ -18,7 +18,7 @@ class ArrayHelper extends Object {
 
 public class ICE_18_PrintArray extends Object {
     public static void main(String[] args) {
-        ArrayHelper ah = new ArrayHelper();
+        ArrayHelper1 ah = new ArrayHelper1();
 
         // Now set up the array stuff, which is more interesting:
         int[] shortArray = new int[4];
