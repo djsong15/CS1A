@@ -8,10 +8,10 @@ class ArrayHelper extends Object {
         }
 
         /*
-        using enhanced for loop above, traditional for loop below
-        for (int i = 0; i < arrArg.length; i++) {
-          System.out.println(arrArg[i]);
-        }
+         * using enhanced for loop above, traditional for loop below
+         * for (int i = 0; i < arrArg.length; i++) {
+         * System.out.println(arrArg[i]);
+         * }
          */
     }
 }
