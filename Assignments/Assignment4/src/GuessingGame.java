@@ -7,10 +7,13 @@ import java.util.Scanner;
 
 /**
  * CS1A, Assignment 4, "Guessing Game" <br>
- * Quarter: Fall 2025
- * TODO: REPLACE THIS CAPITALIZED TEXT WITH THE DESCRIPTION OF THIS CLASS <br>
- * TODO: REPLACE THIS CAPITALIZED TEXT WITH THE DESCRIPTION OF HOW TO WIN MOST
- * EFFICIENTLY <br>
+ * Quarter: Fall 2025 <br>
+ * F25 CS F001A 02W OBJ-ORIENTED PROG METHOD JAVA<br>
+ * START WITH THE MIDPOINT BETWEEN -64 AND 64 (I.E., 0). IF THE GUESS IS
+ * INCORRECT, ELIMINATE HALF OF THE POSSIBILITIES BASED ON WHETHER THE GUESS
+ * IS TOO HIGH OR TOO LOW. REPEAT THIS PROCESS UNTIL THE NUMBER IS GUESSED OR
+ * ALL 8 GUESSES ARE USED UP.
+ * IN OTHER WORDS, PERFORM A BINARY SEARCH ALGORITHM.<br>
  *
  * @author Daniel Song
  * @author Trevon Watson
@@ -32,8 +35,7 @@ public class GuessingGame extends Object {
     // (This will be 129 separate numbers that the user might try to guess)
     // Of course, you will have to create a variable space to hold this number
     // when it is returned (for example, secretNumber)
-    public int getRandomNumber()
-    {
+    public int getRandomNumber() {
         int max = MAX_POSSIBLE_GUESS - MIN_POSSIBLE_GUESS;
         int zeroToMax = randomNumberGenerator.nextInt(max + 1);
         return zeroToMax + MIN_POSSIBLE_GUESS;
@@ -72,7 +74,9 @@ public class GuessingGame extends Object {
                 this.printPreviousGuesses();
             }
             if (!this.isGuessInRange(userGuess)) {
-                System.out.println(userGuess + " is NOT a number in the valid range. Please enter a whole number between " + MIN_POSSIBLE_GUESS + " and " + MAX_POSSIBLE_GUESS + ":");
+                System.out
+                        .println(userGuess + " is NOT a number in the valid range. Please enter a whole number between "
+                                + MIN_POSSIBLE_GUESS + " and " + MAX_POSSIBLE_GUESS + ":");
             }
             return false;
         }
@@ -111,19 +115,20 @@ public class GuessingGame extends Object {
      * @return valid int the user entered via the keyboard
      */
     @SuppressWarnings("resource")
-    public int getInput(int min, int max)
-    {
+    public int getInput(int min, int max) {
         // TODO: Complete this method by using the assignment's instructions
         // Do NOT use recursion for this assignment.
 
         Scanner keyboard = new Scanner(System.in);
-        while (true) { 
+        while (true) {
             if (keyboard.hasNextInt()) {
                 int userInput = keyboard.nextInt();
                 if (userInput >= min && userInput <= max) {
                     return userInput;
                 } else {
-                    System.out.println(userInput + " is NOT a number in the valid range. Please enter a whole number between " + min + " and " + max + ":");
+                    System.out.println(
+                            userInput + " is NOT a number in the valid range. Please enter a whole number between "
+                                    + min + " and " + max + ":");
                 }
             } else {
                 String invalidInput = keyboard.next();
@@ -185,8 +190,7 @@ public class GuessingGame extends Object {
         return choice;
     }
 
-    public int playGuessingGame()
-    {
+    public int playGuessingGame() {
         int secretNumber = this.getRandomNumber(); // Feel free to move this into another method
 
         this.welcome(); // You might call a welcome() method here instead
@@ -195,7 +199,8 @@ public class GuessingGame extends Object {
         // the guess number and call the
         // pertinent method (e.g., isGuessNum)
         while (guessesLeft > 0) {
-            System.out.println("Enter a whole number between " + MIN_POSSIBLE_GUESS + " and " + MAX_POSSIBLE_GUESS + ":");
+            System.out
+                    .println("Enter a whole number between " + MIN_POSSIBLE_GUESS + " and " + MAX_POSSIBLE_GUESS + ":");
             if (this.isGuessNum(secretNumber)) {
                 System.out.println("You won!");
                 return this.playGame();
@@ -208,7 +213,7 @@ public class GuessingGame extends Object {
         int playAgain = this.playGame();
 
         return playAgain; // if you want to end the game early & go directly back to main,
-                // you can use a "return;" statement like this one (e.g., return playAgain;)
+        // you can use a "return;" statement like this one (e.g., return playAgain;)
     }
 
 }

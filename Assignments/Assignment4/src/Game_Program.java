@@ -1,16 +1,13 @@
 /**
  * CS1A, Assignment 4, "Guessing Game" <br>
- * Quarter: <br>
- * TODO: REPLACE THIS CAPITALIZED TEXT WITH THE DESCRIPTION OF THIS CLASS <br>
+ * Quarter: Fall 2025 <br>
+ * F25 CS F001A 02W OBJ-ORIENTED PROG METHOD JAVA<br>
  *
- * @author student 1's given and family name
- * @author student 2's given and family name
- * @author student 3's given and family name
+ * @author Trevon Watson
+ * @author Daniel Song
  */
-public class Game_Program extends Object
-{
-    public static void main(String[] args)
-    {
+public class Game_Program extends Object {
+    public static void main(String[] args) {
         GuessingGame guessingGameObject = new GuessingGame(); // feel free to add arguments to the constructor, if it
                                                               // helps...
 
