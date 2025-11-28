@@ -34,15 +34,21 @@ class MazeBot extends RobotSE {
     private int movesSouth = 0;
     private int movesNorth = 0;
 
+    /**
+     * Constructor for MazeBot, which extends the RobotSE object
+     * @param theCity an instance of the City object
+     * @param str the street number
+     * @param ave the avenue number
+     * @param dir the direction MazeBot should be facing
+     * @param numThings the number of things MazeBot has in its backpack
+     */
     public MazeBot(City theCity, int str, int ave, Direction dir, int numThings) {
         super(theCity, str, ave, dir, numThings);
     }
 
-    /*
-     * TODO: Override here the move method and make it count everything it is
-     * supposed to by adding to the instance variables as well as moving the
-     * MazeBot. This overridden move method must be called by the NavigateMaze
-     * method or by some method(s) called from NavigateMaze.
+    /**
+     * Override move method to record moves
+     * in addition to actually moving
      */
     @Override
     public void move() {
@@ -57,9 +63,9 @@ class MazeBot extends RobotSE {
     }
 
     /**
-     * TODO: You must override the putThing method here.
-     * Will check if MazeBot has Things to put AND if
-     * a Thing isn't already placed on current intersection
+     * Override putThing method to safely put thing down AND
+     * also check if there isn't a thing already at current
+     * location
      */
     @Override
     public void putThing() {
@@ -68,7 +74,9 @@ class MazeBot extends RobotSE {
         }
     }
 
-    // Print out all counter variables
+    /**
+     * Method to print all recorded stats for MazeBot
+     */
     public void printEverything() {
         System.out.println("Total number of spaces moved: " + this.totalMoves);
         System.out.println("Total number of westward movements: " + this.movesWest);
@@ -87,8 +95,12 @@ class MazeBot extends RobotSE {
         return getAvenue() == 9 && getStreet() == 10;
     }
 
-    // THIS IS THE METHOD WE WILL USE TO DO EVERYTHING (IT WILL CALL
-    // OTHER METHODS LIKE isAtEndSpot, ETC)
+    /**
+     * A do all method for helping MazeBot navigate to the
+     * end of the maze. Will leave a breadcrumb trail of things
+     * as it navigates the maze by turning left and looking for
+     * an open path. A form of depth-first search traversal.
+     */
     public void navigateMaze() {
         // While your robot hasn't yet reached the 'end spot', keep navigating
         // through the Maze and doing its thing
