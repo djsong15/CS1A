@@ -68,10 +68,7 @@ public class PosterViewer extends Application {
                 }
             }
             // TODO: Call getLocalizedMessage and printStackTrace on each exception caught
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            posterLabel.setText(e.getLocalizedMessage());
-        } catch (IllegalArgumentException e) {
+        } catch (NullPointerException | IllegalArgumentException e) {
             e.printStackTrace();
             posterLabel.setText(e.getLocalizedMessage());
         }
