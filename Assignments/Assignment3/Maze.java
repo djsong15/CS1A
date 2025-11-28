@@ -36,10 +36,11 @@ class MazeBot extends RobotSE {
 
     /**
      * Constructor for MazeBot, which extends the RobotSE object
-     * @param theCity an instance of the City object
-     * @param str the street number
-     * @param ave the avenue number
-     * @param dir the direction MazeBot should be facing
+     * 
+     * @param theCity   an instance of the City object
+     * @param str       the street number
+     * @param ave       the avenue number
+     * @param dir       the direction MazeBot should be facing
      * @param numThings the number of things MazeBot has in its backpack
      */
     public MazeBot(City theCity, int str, int ave, Direction dir, int numThings) {
