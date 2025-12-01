@@ -9,11 +9,12 @@ import java.util.Scanner;
  * CS1A, Assignment 4, "Guessing Game" <br>
  * Quarter: Fall 2025 <br>
  * F25 CS F001A 02W OBJ-ORIENTED PROG METHOD JAVA<br>
- * START WITH THE MIDPOINT BETWEEN -64 AND 64 (I.E., 0). IF THE GUESS IS
- * INCORRECT, ELIMINATE HALF OF THE POSSIBILITIES BASED ON WHETHER THE GUESS
- * IS TOO HIGH OR TOO LOW. REPEAT THIS PROCESS UNTIL THE NUMBER IS GUESSED OR
- * ALL 8 GUESSES ARE USED UP.
- * IN OTHER WORDS, PERFORM A BINARY SEARCH ALGORITHM.<br>
+ * Start with the midpoint between the minimum and maximum possible guesses.
+ * If the guess is incorrect, eliminate half of the possibilities based on
+ * whether the guess
+ * is too high or too low. Repeat this process until the number is guessed or
+ * all guesses are used up.
+ * In other words, perform a binary search algorithm.<br>
  *
  * @author Daniel Song
  * @author Trevon Watson
@@ -26,6 +27,7 @@ public class GuessingGame extends Object {
     public static final int MAX_GUESSES = 8;
     int guessesLeft = MAX_GUESSES;
     int[] inputGuess = new int[MAX_GUESSES];
+    boolean isPlaying = false;
 
     private final Random randomNumberGenerator = new Random();
 
@@ -35,6 +37,10 @@ public class GuessingGame extends Object {
     // (This will be 129 separate numbers that the user might try to guess)
     // Of course, you will have to create a variable space to hold this number
     // when it is returned (for example, secretNumber)
+
+    /**
+     * @return A randomly generated integer between min and max
+     */
     public int getRandomNumber() {
         int max = MAX_POSSIBLE_GUESS - MIN_POSSIBLE_GUESS;
         int zeroToMax = randomNumberGenerator.nextInt(max + 1);
@@ -43,12 +49,17 @@ public class GuessingGame extends Object {
 
     // You may want to create a method that will display the welcome message and
     // rules (e.g., welcome)
+
+    /**
+     * Prints the welcome message, including rules of the game.
+     */
     public void welcome() {
         System.out.println("Welcome!");
         System.out.println("Rules:");
-        System.out.println("1) You have 8 guesses");
+        System.out.println("1) You have " + MAX_GUESSES + " guesses");
         System.out.println("2) If you guess the wrong number, a hint will be displayed");
-        System.out.println("3) Your guess has to be between -64 and 64");
+        System.out
+                .println("3) Your guess has to be between " + MIN_POSSIBLE_GUESS + " and " + MAX_POSSIBLE_GUESS + ".");
     }
 
     // You may want to create a method (e.g., isGuessNum) that will check to see
@@ -60,6 +71,20 @@ public class GuessingGame extends Object {
     // made,
     // incorrect guesses, guesses remaining, secret number if all guesses used up,
     // error handling, etc.
+
+    private void nextGuess(int userGuess, int secretNumber) {
+        System.out.println(this.getHint(userGuess, secretNumber));
+        System.out.println();
+        this.printPreviousGuesses();
+    }
+
+    /**
+     * Returns true if the user guessed the number and false otherwise.
+     * 
+     * @param secretNumber The randomly generated number the user
+     *                     is to guess
+     * @return Whether or not user guessed the secretNumber
+     */
     public boolean isGuessNum(int secretNumber) {
         int userGuess = this.getInput(MIN_POSSIBLE_GUESS, MAX_POSSIBLE_GUESS);
 
@@ -68,10 +93,10 @@ public class GuessingGame extends Object {
         } else {
             if (this.hasBeenGuessed(userGuess)) {
                 System.out.println("You have already guessed " + userGuess + ". Try again.");
+                nextGuess(userGuess, secretNumber);
             } else {
                 this.saveGuess(userGuess);
-                System.out.println(this.getHint(userGuess, secretNumber));
-                this.printPreviousGuesses();
+                nextGuess(userGuess, secretNumber);
             }
             if (!this.isGuessInRange(userGuess)) {
                 System.out
@@ -83,6 +108,10 @@ public class GuessingGame extends Object {
     }
 
     // You may want to create a method to print the user's previous guesses
+
+    /**
+     * Prints the user's previously guessed numbers.
+     */
     public void printPreviousGuesses() {
         System.out.print("Previous guess(es):");
         for (int i = 0; i < MAX_GUESSES - guessesLeft; i++) {
@@ -93,10 +122,17 @@ public class GuessingGame extends Object {
         }
         System.out.println(".");
         System.out.println("You have " + guessesLeft + " guess(es) left.");
+        System.out.println();
     }
 
     // You may want to create a method to store the user's guesses in the 8 elements
     // of the array
+
+    /**
+     * Saves the user's guess to inputGuess
+     * 
+     * @param guess The user's guessed integer
+     */
     public void saveGuess(int guess) {
         if (guessesLeft > 0) {
             inputGuess[MAX_GUESSES - guessesLeft] = guess;
@@ -120,7 +156,7 @@ public class GuessingGame extends Object {
         // Do NOT use recursion for this assignment.
 
         Scanner keyboard = new Scanner(System.in);
-        while (true) {
+        while (isPlaying) {
             if (keyboard.hasNextInt()) {
                 int userInput = keyboard.nextInt();
                 if (userInput >= min && userInput <= max) {
@@ -135,13 +171,14 @@ public class GuessingGame extends Object {
                 System.out.println(invalidInput + " is NOT a whole number. Please enter a whole number:");
             }
         }
+        return -1; // This line should never be reached
     }
 
     // You may want to create a boolean method to check that the user's guess is
     // within range (between a minimum and maximum)
     // and will return true if it is
     private boolean isGuessInRange(int guess) {
-        return (guess >= MIN_POSSIBLE_GUESS && guess <= MAX_POSSIBLE_GUESS);
+        return guess >= MIN_POSSIBLE_GUESS && guess <= MAX_POSSIBLE_GUESS;
     }
 
     // You may want to create a boolean method to see if the number has been guessed
@@ -158,7 +195,7 @@ public class GuessingGame extends Object {
     // You may want to create a boolean method to see if the number matches the
     // secret number and will return true if it does or false if it doesn't
     private boolean isCorrectGuess(int guess, int secretNumber) {
-        return (guess == secretNumber);
+        return guess == secretNumber;
     }
 
     // You may want to create a method to give a hint about the number guessed
@@ -166,9 +203,9 @@ public class GuessingGame extends Object {
     // ")
     private String getHint(int guess, int secretNumber) {
         if (guess < secretNumber) {
-            return "My secret number is GREATER than " + guess + ".";
+            return "The secret number is GREATER than " + guess + ".";
         } else {
-            return "My secret number is LESS than " + guess + ".";
+            return "The secret number is LESS than " + guess + ".";
         }
     }
 
@@ -184,17 +221,23 @@ public class GuessingGame extends Object {
             // Reset guessesLeft and inputGuess array for a new game
             guessesLeft = MAX_GUESSES;
             inputGuess = new int[MAX_GUESSES];
-        } else {
+        } else if (choice == 0) {
             System.out.println("Exiting game...");
+            isPlaying = false;
         }
         return choice;
     }
 
+    /**
+     * Main method for playing the game.
+     * 
+     * @return User input for whether or not to play the game again.
+     */
     public int playGuessingGame() {
         int secretNumber = this.getRandomNumber(); // Feel free to move this into another method
 
         this.welcome(); // You might call a welcome() method here instead
-
+        isPlaying = true;
         // You might create a loop here that will check numberGuesses 8 times and print
         // the guess number and call the
         // pertinent method (e.g., isGuessNum)
@@ -206,6 +249,7 @@ public class GuessingGame extends Object {
                 return this.playGame();
             }
         }
+        System.out.println("Sorry, you have used all your guesses. The secret number was " + secretNumber + ".");
 
         // You might call and capture results from method (e.g., playGame) to see if
         // user wants to play again and if

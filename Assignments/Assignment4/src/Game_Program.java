@@ -7,6 +7,13 @@
  * @author Daniel Song
  */
 public class Game_Program extends Object {
+    /**
+     * Main will run the program itself by calling the playGuessingGame
+     * method on the GuessingGame object.
+     * As long as the playing value is 1, we will play again.
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
         GuessingGame guessingGameObject = new GuessingGame(); // feel free to add arguments to the constructor, if it
                                                               // helps...
